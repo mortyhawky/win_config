@@ -12,54 +12,49 @@
   "border_offset": -1,
   "border_style": "Square",
 
-  "border_colours": {
-    "single": "#0000ff",
-    "stack": "#ff00ff",
-    "monocle": "#ff0000"
-  },
 
   "theme": {
-    "palette"           :   "Base16",
-    "name"              :   "3024",
-    "bar_accent"        :   "Base0B",
-    "floating_border"   :   "Base02",
-    "monocle_border"    :   "Base08",
-    "single_border"     :   "Base0D",
-    "unfocused_border"  :   "Base01"
+    "palette"                 :   "Base16",
+    "name"                    :   "3024",
+    "bar_accent"              :   "Base06",
+    "floating_border"         :   "Base02",
+    "monocle_border"          :   "Base08",
+    "single_border"           :   "Base0B",
+    "stack_border"            :   "Base0B",
+    "unfocused_border"        :   "Base01",
+    "unfocused_locked_border" :   "Base01"
   },
-
-
 
 
   "monitors": [
     {
       "workspaces": [
         {
-          "name": "I",
+          "name": "1",
+          "layout": "BSP"
+        },
+        {
+          "name": "2",
           "layout": "VerticalStack"
         },
         {
-          "name": "II",
-          "layout": "VerticalStack"
-        },
-        {
-          "name": "III",
+          "name": "3",
           "layout": "HorizontalStack"
         },
         {
-          "name": "IV",
+          "name": "4",
           "layout": "UltrawideVerticalStack"
         },
         {
-          "name": "V",
+          "name": "5",
           "layout": "Rows"
         },
         {
-          "name": "VI",
+          "name": "6",
           "layout": "Grid"
         },
         {
-          "name": "VII",
+          "name": "7",
           "layout": "RightMainVerticalStack"
         }
       ]

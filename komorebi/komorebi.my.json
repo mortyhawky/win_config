@@ -1,68 +1,60 @@
 {
-  
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.41/schema.json",
   "app_specific_configuration_path": "$Env:KOMOREBI_CONFIG_HOME/applications.json",
-  
-  "window_hiding_behaviour": "Cloak",
-  "default_workspace_padding": 4,
-  "default_container_padding": 4,
 
-  "mouse_follows_focus": false,
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "default_workspace_padding": 0,
+  "default_container_padding": 5,
 
   "border": true,
   "border_width": 3,
   "border_offset": -1,
   "border_style": "Square",
-  "border_colours": {
-      "single": "#3333cc",
-      "stack": "#33ee33",
-      "monocle": "#cc3333",
-      "unfocused": "#333333"
-  }, 
 
-  
-    "stackbar": {
-      "height": 40,
-      "mode": "OnStack",
-      "tabs": {
-        "width": 300,
-        "focused_text": "#00a542",
-        "unfocused_text": "#b3b3b3",
-        "background": "#141414"
-      }
-    },
 
+  "theme": {
+    "palette"                 :   "Base16",
+    "name"                    :   "3024",
+    "bar_accent"              :   "Base06",
+    "floating_border"         :   "Base02",
+    "monocle_border"          :   "Base08",
+    "single_border"           :   "Base0B",
+    "stack_border"            :   "Base0B",
+    "unfocused_border"        :   "Base01",
+    "unfocused_locked_border" :   "Base01"
+  },
 
 
   "monitors": [
     {
       "workspaces": [
         {
-          "name": "I",
+          "name": "1",
           "layout": "BSP"
         },
         {
-          "name": "II",
+          "name": "2",
           "layout": "VerticalStack"
         },
         {
-          "name": "III",
+          "name": "3",
           "layout": "HorizontalStack"
         },
         {
-          "name": "IV",
+          "name": "4",
           "layout": "UltrawideVerticalStack"
         },
         {
-          "name": "V",
+          "name": "5",
           "layout": "Rows"
         },
         {
-          "name": "VI",
+          "name": "6",
           "layout": "Grid"
         },
         {
-          "name": "VII",
+          "name": "7",
           "layout": "RightMainVerticalStack"
         }
       ]

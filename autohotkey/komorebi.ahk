@@ -5,6 +5,7 @@ ToolTip("AutoHotkey " . A_PtrSize*8 . "bit version")
 SetTimer () => ToolTip(), -5000
 
 Komorebic(cmd) {
+    ToolTip cmd
     RunWait(format("komorebic.exe {}", cmd), , "Hide")
 }
 
@@ -17,7 +18,18 @@ Komorebic(cmd) {
     reload
 }
 
-#enter::Run "wt.exe"
+#enter:: {
+   RunWait "wt.exe"
+   Sleep 200
+   Komorebic("promote")
+}
+
+#w:: {
+   RunWait "firefox.exe"
+   Sleep 200
+   Komorebic("promote")
+}
+
 +#enter::Komorebic("promote")
 #q::Komorebic("close")
 
