@@ -1,98 +1,72 @@
 {
-
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.41/schema.bar.json",
   "font_family": "JetBrains Mono",
   "theme": {
     "palette": "Base16",
-    "name": "Bright",
-    "accent": "Base0A"
+    "name": "Ashes",
+    "accent": "Base0D"
   },
-
-  "position": {
-    "start": {
-      "x": 20,
-      "y": 3
-    },
-    "end": {
-      "x": 1560,
-      "y": 20
-    }
-  },
-
-  "height": 35,
-
-  "padding": {
-    "top": 0,
-    "bottom": 0,
-    "left": 10,
-    "right": 10
-  },
-
   "left_widgets": [
-      {
-        "Komorebi": {
-          "workspaces": {
-            "enable": true,
-            "hide_empty_workspaces": false
-          },
-          "layout": {
-            "enable": true
-          },
-          "focused_window": {
-            "enable": true,
-            "show_icon": true
-          }
+    {
+      "Komorebi": {
+        "workspaces": {
+          "enable": true,
+          "hide_empty_workspaces": false
+        },
+        "layout": {
+          "enable": true
+        },
+        "focused_window": {
+          "enable": true,
+          "show_icon": true
         }
       }
-    ],
-
+    }
+  ],
   "right_widgets": [
-        {
-            "Update": {
-              "enable": true
-            }
-        },  
-
-        {
-            "Media": {
-              "enable": true
-            }
-        },  
-
-        {
-            "Storage": {
-              "enable": true
-            }
-        },  
-
-        {
-            "Memory": {
-              "enable": true
-            }
-        },  
-
-        {
-            "Network": {
-              "enable": false,
-              "show_activity": true,
-              "show_total_activity": true
-            }
-        },  
-
-        {
-            "Date": {
-              "enable": true,
-              "format": { "Custom": "%Y-%m-%d" }
-            }
-        },  
-
-        {
-            "Time": {
-              "enable": true,
-              "format": { "Custom": "%H:%M" },
-              "timezone": "Europe/Oslo"
-            }
-        }
-    ]
-
+    {
+      "Update": {
+        "enable": true
+      }
+    },
+    {
+      "Media": {
+        "enable": false
+      }
+    },
+    {
+      "Storage": {
+        "enable": false
+      }
+    },
+    {
+      "Memory": {
+        "enable": false
+      }
+    },
+    {
+      "Network": {
+        "enable": false,
+        "show_activity": true,
+        "show_total_activity": true
+      }
+    },
+    {
+      "Date": {
+        "enable": true,
+        "format": "DayDateMonthYear"
+      }
+    },
+    {
+      "Time": {
+        "enable": true,
+        "format": "TwentyFourHour"
+      }
+    },
+    {
+      "Battery": {
+        "enable": true
+      }
+    }
+  ]
 }
