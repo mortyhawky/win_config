@@ -22,4 +22,6 @@ $trigger = New-ScheduledTaskTrigger `
     -User $env:USERNAME
 
 Write-Host "`$exe = $exe"
+Write-Host "`$arg = $arg"
+Write-Host "`$name = $name"
 
