@@ -13,6 +13,14 @@ Komorebic(cmd) {
     RunWait(format("komorebic.exe {}", cmd), , "Hide")
 }
 
+F2::Run('pwsh -NoProfile -File Start-Komorebi.ps1')
+
++F2:: Komorebic("stop  --bar --masir")
+
+^#e:: {
+    RunWait( format("nvim.exe {}", "C:\Users\morty\.config\autohotkey\komorebi.ahk") )
+    reload
+}
 
 ^#r:: {
     Komorebic("retile")
