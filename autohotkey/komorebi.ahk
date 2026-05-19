@@ -2,7 +2,7 @@
 #SingleInstance Force
 
 CoordMode "ToolTip", "Screen"
-CoordMode "Mouse", "Screen"
+CoordMode "Mouse",   "Screen"
 tipX := 750
 tipY := 8
 
@@ -10,40 +10,39 @@ ToolTip "AutoHotkey " . A_PtrSize*8 . "bit", tipX, tipY
 ;SetTimer () => ToolTip(), -5000
 
 KomoRunWait(cmd) {
-    ToolTip "komorebic.exe " . cmd, tipX, tipY
-    ;SetTimer () => ToolTip(), -5000
-    RunWait(format("komorebic.exe {}", cmd), , "Hide")
+   ToolTip "komorebic.exe " . cmd, tipX, tipY
+   ;SetTimer () => ToolTip(), -5000
+   ;RunWait(format("komorebic.exe {}", cmd),, "Hide")
+   RunWait(format("komorebic.exe {}", cmd) )
 }
 
 KomoRun(cmd) {
-    ToolTip "komorebic.exe " . cmd, tipX, tipY
-    ;SetTimer () => ToolTip(), -5000
-    Run(format("komorebic.exe {}", cmd), , "Hide")
+   runString := format("pwsh komorebic.exe {}", cmd)
+   ToolTip runString, tipX, tipY
+   Run runString
+   ;;SetTimer () => ToolTip(), -5000
+   ;Run(format("komorebic.exe {}", cmd), , "Hide")
+}
+
+F2:: {
+   Run "pwsh -NoExit -Command Get-Date"
+   ;KomoRun('start --config=C:\Users\morty\.config\komorebi\komorebi.json')
 }
 
 #q:: KomoRunWait("close")
 
-;F2::  {
-;      Run "pwsh Start-Komorebi.ps1"
-;}
-
-F2::  {
-      KomoRun('start --config "C:\\Users\\morty\\.config\\komorebi\\komorebi.json" --bar --masir')
-}
-
-+F2:: KomoRunWait("stop  --bar --masir")
++F2:: KomoRun('stop --bar --masir')
 
 ^#e:: {
-    RunWait( format("nvim.exe {}", "C:\Users\morty\.config\autohotkey\komorebi.ahk") )
-    reload
+   RunWait( format("nvim.exe {}", "C:\Users\morty\.config\autohotkey\komorebi.ahk") )
+   reload
 }
 
+#r:: KomoRun("retile")
 
-#r::   KomoRun("retile")
-
-^#r::  { 
-       KomoRunWait("retile")
-       reload
+^#r:: { 
+   KomoRunWait("retile")
+   reload
 }
 
 
@@ -101,33 +100,3 @@ F2::  {
 ;; Manipulate windows
 #m::KomoRunWait("toggle-monocle")
 #t::KomoRunWait("toggle-monocle")
-
-
-;; Move windows
-;!+h::KomoRunWait("move left")
-;!+j::KomoRunWait("move down")
-;!+k::KomoRunWait("move up")
-;!+l::KomoRunWait("move right")
-;
-;; Stack windows
-;!Left::KomoRunWait("stack left")
-;!Down::KomoRunWait("stack down")
-;!Up::KomoRunWait("stack up")
-;!Right::KomoRunWait("stack right")
-;!;::KomoRunWait("unstack")
-;![::KomoRunWait("cycle-stack previous")
-;!]::KomoRunWait("cycle-stack next")
-;
-;
-;
-;; Window manager options
-;!+r::KomoRunWait("retile")
-;!p::KomoRunWait("toggle-pause")
-;
-;; Layouts
-;!x::KomoRunWait("flip-layout horizontal")
-;!y::KomoRunWait("flip-layout vertical")
-;
-;
-;!m::KomoRunWait("minimize")
-;
