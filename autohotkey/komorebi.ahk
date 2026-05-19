@@ -3,24 +3,32 @@
 
 CoordMode "ToolTip", "Screen"
 CoordMode "Mouse", "Screen"
+tipX := 750
+tipY := 8
 
-ToolTip "AutoHotkey " . A_PtrSize*8 . "bit version", 600, 10
+ToolTip "AutoHotkey " . A_PtrSize*8 . "bit", tipX, tipY
 ;SetTimer () => ToolTip(), -5000
 
 KomoRunWait(cmd) {
-    ToolTip cmd, 600, 10
+    ToolTip "komorebic.exe " . cmd, tipX, tipY
     ;SetTimer () => ToolTip(), -5000
     RunWait(format("komorebic.exe {}", cmd), , "Hide")
 }
 
 KomoRun(cmd) {
-    ToolTip cmd, 600, 10
+    ToolTip "komorebic.exe " . cmd, tipX, tipY
     ;SetTimer () => ToolTip(), -5000
     Run(format("komorebic.exe {}", cmd), , "Hide")
 }
 
+#q:: KomoRunWait("close")
+
+;F2::  {
+;      Run "pwsh Start-Komorebi.ps1"
+;}
+
 F2::  {
-      Run "pwsh Start-Komorebi.ps1"
+      KomoRun('start --config "C:\\Users\\morty\\.config\\komorebi\\komorebi.json" --bar --masir')
 }
 
 +F2:: KomoRunWait("stop  --bar --masir")
@@ -30,7 +38,6 @@ F2::  {
     reload
 }
 
-;F2::Run('pwsh -NoProfile -File Start-Komorebi.ps1')
 
 #r::   KomoRun("retile")
 
@@ -56,7 +63,6 @@ F2::  {
 }
 
 +#enter::KomoRunWait("promote")
-#q::KomoRunWait("close")
 
 ;; Move windows across workspaces
 #+1::KomoRunWait("move-to-workspace 0")
