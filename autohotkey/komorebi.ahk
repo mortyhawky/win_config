@@ -7,108 +7,121 @@ CoordMode "Mouse", "Screen"
 ToolTip "AutoHotkey " . A_PtrSize*8 . "bit version", 600, 10
 ;SetTimer () => ToolTip(), -5000
 
-Komorebic(cmd) {
+KomoRunWait(cmd) {
     ToolTip cmd, 600, 10
     ;SetTimer () => ToolTip(), -5000
     RunWait(format("komorebic.exe {}", cmd), , "Hide")
 }
 
-F2::Run('pwsh -NoProfile -File Start-Komorebi.ps1')
+KomoRun(cmd) {
+    ToolTip cmd, 600, 10
+    ;SetTimer () => ToolTip(), -5000
+    Run(format("komorebic.exe {}", cmd), , "Hide")
+}
 
-+F2:: Komorebic("stop  --bar --masir")
+F2::  {
+      Run "pwsh Start-Komorebi.ps1"
+}
+
++F2:: KomoRunWait("stop  --bar --masir")
 
 ^#e:: {
     RunWait( format("nvim.exe {}", "C:\Users\morty\.config\autohotkey\komorebi.ahk") )
     reload
 }
 
-^#r:: {
-    Komorebic("retile")
-    reload
+;F2::Run('pwsh -NoProfile -File Start-Komorebi.ps1')
+
+#r::   KomoRun("retile")
+
+^#r::  { 
+       KomoRunWait("retile")
+       reload
 }
 
+
 #enter:: {
-   ;Komorebic("preselect-direction left")
+   ;KomoRunWait("preselect-direction left")
    ;Sleep 2000
    RunWait "wt.exe"
    Sleep 100
-   Komorebic("promote")
+   KomoRunWait("promote")
 }
 
 #w:: {
-   ;Komorebic("preselect-direction left")
+   ;KomoRunWait("preselect-direction left")
    RunWait "firefox.exe"
    Sleep 300
-   Komorebic("promote")
+   KomoRunWait("promote")
 }
 
-+#enter::Komorebic("promote")
-#q::Komorebic("close")
++#enter::KomoRunWait("promote")
+#q::KomoRunWait("close")
 
 ;; Move windows across workspaces
-#+1::Komorebic("move-to-workspace 0")
-#+2::Komorebic("move-to-workspace 1")
-#+3::Komorebic("move-to-workspace 2")
-#+4::Komorebic("move-to-workspace 3")
-#+5::Komorebic("move-to-workspace 4")
-#+6::Komorebic("move-to-workspace 5")
-#+7::Komorebic("move-to-workspace 6")
-#+8::Komorebic("move-to-workspace 7")
+#+1::KomoRunWait("move-to-workspace 0")
+#+2::KomoRunWait("move-to-workspace 1")
+#+3::KomoRunWait("move-to-workspace 2")
+#+4::KomoRunWait("move-to-workspace 3")
+#+5::KomoRunWait("move-to-workspace 4")
+#+6::KomoRunWait("move-to-workspace 5")
+#+7::KomoRunWait("move-to-workspace 6")
+#+8::KomoRunWait("move-to-workspace 7")
 
 ;; Focus workspaces       Win+1234567
-#1::Komorebic("focus-workspace 0")
-#2::Komorebic("focus-workspace 1")
-#3::Komorebic("focus-workspace 2")
-#4::Komorebic("focus-workspace 3")
-#5::Komorebic("focus-workspace 4")
-#6::Komorebic("focus-workspace 5")
-#7::Komorebic("focus-workspace 6")
-#8::Komorebic("focus-workspace 7")
+#1::KomoRunWait("focus-workspace 0")
+#2::KomoRunWait("focus-workspace 1")
+#3::KomoRunWait("focus-workspace 2")
+#4::KomoRunWait("focus-workspace 3")
+#5::KomoRunWait("focus-workspace 4")
+#6::KomoRunWait("focus-workspace 5")
+#7::KomoRunWait("focus-workspace 6")
+#8::KomoRunWait("focus-workspace 7")
 
 ;; Resize window    Win+Shift+hjkl
-#+l::Komorebic("resize-axis horizontal increase")
-#+h::Komorebic("resize-axis horizontal decrease")
-#+k::Komorebic("resize-axis vertical increase")
-#+j::Komorebic("resize-axis vertical decrease")
+#+l::KomoRunWait("resize-axis horizontal increase")
+#+h::KomoRunWait("resize-axis horizontal decrease")
+#+k::KomoRunWait("resize-axis vertical increase")
+#+j::KomoRunWait("resize-axis vertical decrease")
 
 ;; Focus window Win+hjkl
-#h::Komorebic("focus left")
-#j::Komorebic("focus down")
-#k::Komorebic("focus up")
-#l::Komorebic("focus right")
-#n::Komorebic("cycle-focus next")
-#+n::Komorebic("cycle-focus previous")
+#h::KomoRunWait("focus left")
+#j::KomoRunWait("focus down")
+#k::KomoRunWait("focus up")
+#l::KomoRunWait("focus right")
+#n::KomoRunWait("cycle-focus next")
+#+n::KomoRunWait("cycle-focus previous")
 
 ;; Manipulate windows
-#m::Komorebic("toggle-monocle")
-#t::Komorebic("toggle-monocle")
+#m::KomoRunWait("toggle-monocle")
+#t::KomoRunWait("toggle-monocle")
 
 
 ;; Move windows
-;!+h::Komorebic("move left")
-;!+j::Komorebic("move down")
-;!+k::Komorebic("move up")
-;!+l::Komorebic("move right")
+;!+h::KomoRunWait("move left")
+;!+j::KomoRunWait("move down")
+;!+k::KomoRunWait("move up")
+;!+l::KomoRunWait("move right")
 ;
 ;; Stack windows
-;!Left::Komorebic("stack left")
-;!Down::Komorebic("stack down")
-;!Up::Komorebic("stack up")
-;!Right::Komorebic("stack right")
-;!;::Komorebic("unstack")
-;![::Komorebic("cycle-stack previous")
-;!]::Komorebic("cycle-stack next")
+;!Left::KomoRunWait("stack left")
+;!Down::KomoRunWait("stack down")
+;!Up::KomoRunWait("stack up")
+;!Right::KomoRunWait("stack right")
+;!;::KomoRunWait("unstack")
+;![::KomoRunWait("cycle-stack previous")
+;!]::KomoRunWait("cycle-stack next")
 ;
 ;
 ;
 ;; Window manager options
-;!+r::Komorebic("retile")
-;!p::Komorebic("toggle-pause")
+;!+r::KomoRunWait("retile")
+;!p::KomoRunWait("toggle-pause")
 ;
 ;; Layouts
-;!x::Komorebic("flip-layout horizontal")
-;!y::Komorebic("flip-layout vertical")
+;!x::KomoRunWait("flip-layout horizontal")
+;!y::KomoRunWait("flip-layout vertical")
 ;
 ;
-;!m::Komorebic("minimize")
+;!m::KomoRunWait("minimize")
 ;
