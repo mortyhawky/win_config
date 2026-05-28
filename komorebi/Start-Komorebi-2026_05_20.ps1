@@ -1,20 +1,21 @@
-# Start-Komorebi.ps1
+# Start-Komorebi-current.ps1
 
-clear
-$procName = "komorebi"
-Write-Host "`$Env:KOMOREBI_CONFIG_HOME     = $Env:KOMOREBI_CONFIG_HOME" -ForegroundColor Yellow
-Write-Host "`$procName                     = $procName"                 -ForegroundColor Yellow
+#clear
+$procKomo = "komorebi"
+#Write-Host "`$Env:KOMOREBI_CONFIG_HOME     = $Env:KOMOREBI_CONFIG_HOME" -ForegroundColor Yellow
+#Write-Host "`$procKomo                     = $procKomo"                 -ForegroundColor Yellow
 
-Get-Process -Name "$procName" -ErrorAction SilentlyContinue
+Get-Process -Name "$procKomo" 
+return
 
-if (Get-Process -Name "$procName" -ErrorAction SilentlyContinue) {
-   Write-Host "$procName is running.     Shift+F2 to stop $procName." -ForegroundColor Green
+if (Get-Process -Name "$procKomo" -ErrorAction SilentlyContinue) {
+   Write-Host "$procKomo is running.     Shift+F2 to stop $procKomo." -ForegroundColor Green
    return
 } 
 else {
-   Write-Host "$procName is NOT running   ... Starting $procName ..." -ForegroundColor Green
+   Write-Host "$procKomo is NOT running   ... Starting $procKomo ..." -ForegroundColor Green
 
-   #Start-Process -FilePath "$procName"
+   #Start-Process -FilePath "$procKomo"
 
 #Start-Process -FilePath "$Env:ComSpec" -ArgumentList "/c dir `"%SystemDrive%\Program Files`""
 Start-Process 'komorebi.exe' -ArgumentList '--config="C:\Users\morty\.config\komorebi\komorebi.json"' -WindowStyle hidden
@@ -33,20 +34,20 @@ if (!(Get-Process masir -ErrorAction SilentlyContinue))
 
 #Start-Process -FilePath "$Env:ComSpec" -ArgumentList "/c dir `"%SystemDrive%\Program Files`""
 #Start-Process -FilePath "$Env:ComSpec" -ArgumentList "/c","dir","`"%SystemDrive%\Program Files`""
-  # Start-Process -FilePath "$procName" 
+  # Start-Process -FilePath "$procKomo" 
   #   -ArgumentList "--bar", "`"--masir`""
 
 
-   #Start-Process "$procName" `
+   #Start-Process "$procKomo" `
    # -ArgumentList '--config C:\Users\morty\.config\komorebi\komorebi.json'
 
    Sleep 1
-   Get-Process -Name "$procName" -ErrorAction SilentlyContinue
+   Get-Process -Name "$procKomo" -ErrorAction SilentlyContinue
 }
 
 
 
-    #-ArgumentList '--config "$Env:KOMOREBI_CONFIG_HOME\$procName.json"'
+    #-ArgumentList '--config "$Env:KOMOREBI_CONFIG_HOME\$procKomo.json"'
       #-WindowStyle hidden
 
 #$exe    = "$env:USERPROFILE\scoop\apps\komorebi\current\komorebic.exe"

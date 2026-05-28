@@ -3,63 +3,81 @@
 
 CoordMode "ToolTip", "Screen"
 CoordMode "Mouse",   "Screen"
-tipX := 750
+tipX := 720
 tipY := 8
 
-ToolTip "AutoHotkey " . A_PtrSize*8 . "bit", tipX, tipY
-;SetTimer () => ToolTip(), -5000
+Run "pwsh -NoExit -WorkingDirectory C:\Users\morty\.config\komorebi -Command .\Start-Komorebi-current.ps1",,"Hide"
+
+Info(string) {
+   ToolTip string, tipX, tipY
+}
+
+Info "AutoHotkey " . A_PtrSize*8 . "bit " . A_ScriptName
 
 KomoRunWait(cmd) {
-   ToolTip "komorebic.exe " . cmd, tipX, tipY
-   ;SetTimer () => ToolTip(), -5000
-   ;RunWait(format("komorebic.exe {}", cmd),, "Hide")
-   RunWait(format("komorebic.exe {}", cmd) )
+   Info "RunWait komorebic.exe " . cmd
+   RunWait(format("komorebic.exe {}", cmd),, "Hide" )
 }
 
 KomoRun(cmd) {
-   runString := format("pwsh komorebic.exe {}", cmd)
-   ToolTip runString, tipX, tipY
-   Run runString
-   ;;SetTimer () => ToolTip(), -5000
-   ;Run(format("komorebic.exe {}", cmd), , "Hide")
+   cmdFrmt := format("komorebic.exe {}", cmd)
+   Info "Run " . cmdFrmt
+   Run(format("komorebic.exe {}", cmd), , "Hide")
 }
 
 F2:: {
-   Run "pwsh -NoExit -Command Get-Date"
-   ;KomoRun('start --config=C:\Users\morty\.config\komorebi\komorebi.json')
+   Info "Wrapper: Start-Komorebi-current.ps1"
+   Run "pwsh -NoExit -WorkingDirectory C:\Users\morty\.config\komorebi -Command .\Start-Komorebi-current.ps1",,"Hide"
 }
 
-#q:: KomoRunWait("close")
-
-+F2:: KomoRun('stop --bar --masir')
-
-^#e:: {
-   RunWait( format("nvim.exe {}", "C:\Users\morty\.config\autohotkey\komorebi.ahk") )
-   reload
++F2:: {
+   KomoRun('stop --bar --masir')
 }
-
-#r:: KomoRun("retile")
-
-^#r:: { 
-   KomoRunWait("retile")
-   reload
-}
-
 
 #enter:: {
    ;KomoRunWait("preselect-direction left")
    ;Sleep 2000
-   RunWait "wt.exe"
-   Sleep 100
+   Run "wt.exe"
+   Sleep 200
    KomoRunWait("promote")
 }
 
 #w:: {
    ;KomoRunWait("preselect-direction left")
-   RunWait "firefox.exe"
-   Sleep 300
+   Run "firefox.exe"
+   Sleep 1000
    KomoRunWait("promote")
 }
+
+^Tab:: ToolTip ThisHotkey, tipX, TipY
++Tab:: ToolTip ThisHotkey, tipX, TipY
+;#Tab:: ToolTip ThisHotkey, tipX, TipY
+;#Tab:: {
+;   ToolTip ThisHotkey, tipX, TipY
+;   ;Send "!{Tab}"
+;   AltTab
+;}
+;!Tab:: ToolTip ThisHotkey, tipX, TipY
+;#Tab::AltTabMenu
+
+^#r:: { 
+   KomoRunWait("retile")    ; komorebic retile
+   Sleep 1000               ; Wait 1000ms
+   reload                   ; Reloads this script
+}
+
+#q:: KomoRunWait("close")
++#q:: Send "!{F4}"
+
+; Ctrl+Win+e edit komorebi-current.ahk, then reload on exit.
+^#e:: {
+   Info "Edit: komorebi-current.ahk"
+   RunWait( format("nvim.exe {}", "C:\Users\morty\.config\komorebi\komorebi-current.ahk") )
+   reload
+}
+
+
+#r:: KomoRun("retile")
 
 +#enter::KomoRunWait("promote")
 
